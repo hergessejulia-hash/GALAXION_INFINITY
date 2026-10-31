@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GALAXION INFINITY</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="menu" class="overlay">
+      <div class="menu-card">
+        <h1>GALAXION <span>INFINITY</span></h1>
+        <p>Um universo esperando por você.</p>
+        <label for="player-name">Nome do explorador</label>
+        <input id="player-name" type="text" maxlength="18" value="Explorador" />
+        <button id="play-button">JOGAR</button>
+      </div>
+    </div>
+    <main id="game" class="hidden">
+      <header id="topbar">
+        <div class="brand">GALAXION <span>INFINITY</span></div>
+        <div class="top-status">
+          <span id="planet-label">VERDÁLIA</span>
+          <span id="clock-label">DIA</span>
+          <span id="days-label">Dias explorados: 1</span>
+        </div>
+        <button id="save-button">Salvar</button>
+      </header>
+      <section id="mission-card" class="glass">
+        <strong>MISSÃO INICIAL</strong>
+        <p id="mission-text">Explore Verdália e colete 3 Pedrinhas.</p>
+        <div class="progress"><div id="mission-progress"></div></div>
+        <small id="mission-count">0 / 3</small>
+      </section>
+      <section id="inventory-card" class="glass">
+        <h2>INVENTÁRIO</h2>
+        <div id="inventory-list"></div>
+        <button id="craft-button">Fabricar lanterna</button>
+        <small>Receita: 5 Pedrinhas + 3 Opalas</small>
+      </section>
+      <section id="help-card" class="glass">
+        <strong>CONTROLES</strong>
+        <p>WASD ou setas: mover</p>
+        <p>Espaço: pular</p>
+        <p>E: coletar recursos</p>
+        <p>Mouse: olhar ao redor</p>
+      </section>
+      <div id="toast"></div>
+      <div id="crosshair">+</div>
+      <div id="world-label">VERDÁLIA • FLORESTA VIVA</div>
+      <canvas id="game-canvas"></canvas>
+    </main>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
