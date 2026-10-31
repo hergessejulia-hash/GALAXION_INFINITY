@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --blue: #48d8ff;
+    --purple: #a66cff;
+    --background: #03040c;
+    --panel: rgba(7, 12, 31, 0.88);
+    --border: rgba(93, 204, 255, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: #eef7ff;
+    font-family: 'Inter', Arial, sans-serif;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* MENU INICIAL */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #171d49 0%,
+            #090b20 48%,
+            #02030a 100%
+        );
+}
+
+.overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image:
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 65px 65px;
+}
+
+.menu-card {
+    position: relative;
+    width: min(560px, 92vw);
+    padding: 45px 30px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: rgba(4, 8, 25, 0.85);
+    box-shadow: 0 0 70px #2c54b533;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(32px, 7vw, 54px);
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+h1 span,
+.brand span {
+    color: var(--blue);
+    text-shadow: 0 0 18px #48d8ff66;
+}
+
+.menu-card p {
+    color: #b9c6e6;
+    margin-bottom: 30px;
+}
+
+.menu-card label {
+    display: block;
+    margin: 15px auto 8px;
+    max-width: 320px;
+    text-align: left;
+    font-size: 12px;
+    color: #b9c6e6;
+}
+
+.menu-card input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #080d25;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.menu-card input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 12px #48d8ff33;
+}
+
+/* BOTÕES */
+
+button {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    background: #121b3a;
+    color: #eef7ff;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+button:hover {
+    background: #1b2a55;
+    box-shadow: 0 0 15px #48d8ff22;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+#play-button {
+    display: block;
+    width: min(320px, 100%);
+    margin: 22px auto 0;
+    padding: 15px;
+    border: none;
+    background: linear-gradient(90deg, #397bff, #a15cff);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 0 0 25px #5b6dff44;
+}
+
+#play-button:hover {
+    box-shadow: 0 0 30px #5b6dff88;
+}
+
+/* INTERFACE DO JOGO */
+
+#game {
+    position: fixed;
+    inset: 0;
+}
+
+#game-canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#topbar {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 22px;
+    background: linear-gradient(
+        rgba(3, 4, 12, 0.9),
+        transparent
+    );
+}
+
+.brand {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.top-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto;
+    color: #c4d9f5;
+    font-size: 11px;
+}
+
+#planet-label {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.glass {
+    position: absolute;
+    z-index: 2;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--panel);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 35px #0003;
+}
+
+/* MISSÕES */
+
+#mission-card {
+    top: 78px;
+    left: 20px;
+    width: 245px;
+    padding: 16px;
+}
+
+#mission-card strong,
+#help-card strong {
+    color: var(--blue);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+#mission-card p {
+    color: #c8d4ef;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.progress {
+    height: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #1b2445;
+}
+
+#mission-progress {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    transition: width 0.3s;
+}
+
+#mission-count {
+    display: block;
+    margin-top: 7px;
+    color: #a7b7da;
+    font-size: 10px;
+    text-align: right;
+}
+
+/* INVENTÁRIO */
+
+#inventory-card {
+    top: 78px;
+    right: 20px;
+    width: 230px;
+    padding: 16px;
+}
+
+#inventory-card h2 {
+    margin: 0 0 14px;
+    color: var(--blue);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+#inventory-list {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #d7e4ff;
+    font-size: 12px;
+}
+
+.item-row span:last-child {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+#inventory-card small {
+    display: block;
+    margin-top: 9px;
+    color: #8d9cbd;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+/* CONTROLES */
+
+#help-card {
+    bottom: 20px;
+    left: 20px;
+    width: 220px;
+    padding: 14px 16px;
+}
+
+#help-card p {
+    margin: 8px 0 0;
+    color: #b8c8e8;
+    font-size: 11px;
+}
+
+/* ELEMENTOS DO MUNDO */
+
+#world-label {
+    position: absolute;
+    z-index: 2;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d8f8ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #48d8ff;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+#crosshair {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #d9f8ff;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+#toast {
+    position: absolute;
+    z-index: 4;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 11px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #101a3eee;
+    color: white;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+#toast.show {
+    opacity: 1;
+}
+
+/* TELAS MENORES */
+
+@media (max-width: 700px) {
+    #topbar {
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .brand {
+        font-size: 11px;
+    }
+
+    .top-status {
+        gap: 7px;
+        font-size: 9px;
+    }
+
+    #days-label {
+        display: none;
+    }
+
+    #mission-card {
+        top: 65px;
+        left: 10px;
+        width: 195px;
+    }
+
+    #inventory-card {
+        top: auto;
+        right: 10px;
+        bottom: 15px;
+        width: 190px;
+    }
+
+    #help-card {
+        display: none;
+    }
+
+    #world-label {
+        bottom: 12px;
+        font-size: 9px;
+    }
+}
